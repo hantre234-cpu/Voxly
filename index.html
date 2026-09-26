@@ -1,1 +1,125 @@
-<!-- Voxly -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PodExtract — Turn long videos into audio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <div class="bg-orbs" aria-hidden="true">
+    <span class="orb orb-1"></span>
+    <span class="orb orb-2"></span>
+    <span class="orb orb-3"></span>
+  </div>
+
+  <main class="app">
+    <header class="brand">
+      <img src="assets/CSS/logo.png" alt="Voxly logo" class="brand-logo">
+    </header>
+
+    <!-- Main form card -->
+    <section class="card main-card">
+      <form id="convert-form" novalidate>
+        <label class="field-label" for="url">🔗 Paste YouTube URL</label>
+        <div class="input-wrap">
+          <input
+            type="url"
+            id="url"
+            name="url"
+            placeholder="https://youtube.com/watch?v=..."
+            autocomplete="off"
+            spellcheck="false"
+            required
+          />
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label class="field-label" for="format">Format</label>
+            <div class="select-wrap">
+              <select id="format" name="format">
+                <option value="mp3" selected>MP3</option>
+                <option value="m4a">M4A</option>
+                <option value="wav">WAV</option>
+                <option value="opus">Opus</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="quality">Quality</label>
+            <div class="select-wrap">
+              <select id="quality" name="quality">
+                <option value="96">96 kbps</option>
+                <option value="128">128 kbps</option>
+                <option value="192" selected>192 kbps</option>
+                <option value="320">320 kbps</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-primary" id="convert-btn">
+          <span class="btn-icon">🎧</span>
+          <span class="btn-text">Convert to Audio</span>
+        </button>
+
+        <p class="error-msg" id="error-msg" role="alert"></p>
+      </form>
+    </section>
+
+    <!-- Video preview (hidden until we connect the backend) -->
+    <section class="card video-card hidden" id="video-card">
+      <div class="video-thumb" id="video-thumb">
+        <span class="thumb-placeholder">🎙️</span>
+      </div>
+      <div class="video-info">
+        <h2 class="video-title" id="video-title">Video title will appear here</h2>
+        <div class="video-meta">
+          <span>⏱ <span id="video-duration">--:--</span></span>
+          <span>👤 <span id="video-channel">Channel</span></span>
+        </div>
+        <div class="video-tags">
+          <span class="tag" id="tag-format">Format: MP3</span>
+          <span class="tag" id="tag-quality">Quality: 192 kbps</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Progress -->
+    <section class="card progress-card hidden" id="progress-card">
+      <div class="progress-head">
+        <span class="progress-title">Converting your audio…</span>
+        <span class="progress-percent" id="progress-percent">0%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+      <div class="progress-status" id="progress-status">Preparing…</div>
+    </section>
+
+    <!-- Result -->
+    <section class="card result-card hidden" id="result-card">
+      <div class="result-icon">🎵</div>
+      <div class="result-info">
+        <div class="result-name" id="result-name">Podcast Episode.mp3</div>
+        <div class="result-meta" id="result-meta">192 kbps · MP3</div>
+      </div>
+      <a href="#" class="btn-download" id="download-btn" download>
+        <span>Download</span>
+        <span class="arrow">↓</span>
+      </a>
+    </section>
+
+    <footer class="footer">
+      
+    </footer>
+  </main>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
